@@ -11,10 +11,6 @@ import xmpath
 import xmstring
 import xmprocess
 import xmsandbox
-try:
-    import xmreadline
-except ImportError:
-    pass
 
 def xm_machine_save_arguments(impl, argc, argv):
     lgl = impl["lua"].globals()
@@ -42,10 +38,6 @@ def xm_machine_init():
     xmstring.register(impl["lua"])
     xmprocess.register(impl["lua"])
     xmsandbox.register(impl["lua"])
-    try:
-        xmreadline.register(impl["lua"])
-    except (NameError, AttributeError):
-        pass
     if platform in ("win32", "cygwin"):
         lgl._HOST = "windows"
     elif platform == "darwin":

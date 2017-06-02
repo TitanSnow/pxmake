@@ -29,6 +29,7 @@ local sandbox_core_sandbox = sandbox_core_sandbox or {}
 local sandbox   = require("sandbox/sandbox")
 local raise     = require("sandbox/modules/raise")
 local history   = require("project/history")
+local has_readline, pyreadline = pypcall(pyimport, "readline")
 
 -- enter interactive mode
 function sandbox_core_sandbox.interactive()
@@ -47,16 +48,15 @@ function sandbox_core_sandbox.interactive()
 
     -- load repl history
     local replhistory = nil
-    local enable_readline = os.versioninfo().features.readline
-    if enable_readline then
+    if has_readline then
 
         -- clear history
-        readline.clear_history()
+        pyreadline.clear_history()
 
         -- load history
         replhistory = history("global.history"):load("replhistory") or {}
         for _, ln in ipairs(replhistory) do
-            readline.add_history(ln)
+            pyreadline.add_history(ln)
         end
     end
 
@@ -64,18 +64,18 @@ function sandbox_core_sandbox.interactive()
     sandbox.interactive(instance._PUBLIC) 
 
     -- save repl history if readline is enabled
-    if enable_readline then
+    if has_readline then
 
         -- save to history
-        local entries = readline.history_list()
-        if #entries > #replhistory then
-            for i = #replhistory + 1, #entries do
-                history("global.history"):save("replhistory", entries[i].line)
+        local lenent = pyreadline.get_current_history_length()
+        if lenent > #replhistory then
+            for i = #replhistory + 1, lenent do
+                history("global.history"):save("replhistory", pyreadline.get_history_item(i))
             end
         end
 
         -- clear history
-        readline.clear_history()
+        pyreadline.clear_history()
     end
 end
 
