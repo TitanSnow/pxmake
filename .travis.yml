@@ -1,7 +1,10 @@
 sudo: required
 os: osx
 before_install:
-  - git checkout -qf origin/dev
+  - cd ..
+  - rm -rf pxmake
+  - git clone --depth=50 --branch=dev https://github.com/TitanSnow/pxmake.git pxmake
+  - cd pxmake
 install:
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install dmd rust python3 luajit --with-52compat; fi
   - pip3 install coverage codecov
