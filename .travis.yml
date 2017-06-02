@@ -1,0 +1,20 @@
+sudo: required
+os: osx
+before_install:
+  - git checkout -qf origin/dev
+install:
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install dmd rust python3 luajit --with-52compat; fi
+  - pip3 install coverage codecov
+  - python3 setup.py install
+script:
+  - echo "#!$(which coverage) run" > tmp
+  - cat $(which pxmake) >> tmp
+  - chmod +x tmp
+  - mv tmp $(which pxmake)
+  - pxmake --version
+  - pxmake l versioninfo
+  - pxmake l --backtrace tests/test.lua
+
+after_success:
+  - coverage combine $(find -name '.coverage')
+  - codecov
