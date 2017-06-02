@@ -5,6 +5,7 @@ xmake implement on python focuses on reuse python's library and API compatibilit
 
 [![codecov](https://codecov.io/gh/TitanSnow/pxmake/branch/dev/graph/badge.svg)](https://codecov.io/gh/TitanSnow/pxmake)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4807330a0fcf4fc8b54a59a0455a8cc8)](https://www.codacy.com/app/TitanSnow/pxmake?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=TitanSnow/pxmake&amp;utm_campaign=Badge_Grade)
+[![LICENSE](https://img.shields.io/badge/LICENSE-Apache--2.0-blue.svg)](LICENSE.md)
 
 ## Intro
 
