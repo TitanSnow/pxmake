@@ -40,7 +40,7 @@ local history       = require("project/history")
 local menu =
 {
     -- title
-    title = "pxmake v" .. xmake._VERSION .. ", The Make-like Build Utility based on Lua reimplement on Python"
+    title = "pxmake v" .. xmake._VERSION .. ", The make-like build utility based on Lua reimplement on Python"
 
     -- copyright
 ,   copyright = "Copyright (C) 2017 TitanSnow\nCopyright (C) 2015-2017 Ruki Wang, ${underline}tboox.org${clear}, ${underline}xmake.io${clear}"
