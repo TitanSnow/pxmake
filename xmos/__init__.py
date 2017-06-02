@@ -20,8 +20,6 @@ from xmos.strerror import xm_os_strerror
 from xmos.getwinsize import xm_os_getwinsize
 from xmos.versioninfo import xm_os_versioninfo
 try:
-    from xmos.uid import xm_os_uid
-    from xmos.gid import xm_os_gid
     from xmos.getown import xm_os_getown
 except ImportError:
     pass
@@ -52,8 +50,6 @@ def register(lua):
     xmos.getwinsize = partial(xm_os_getwinsize, lua)
     xmos.versioninfo = partial(xm_os_versioninfo, lua)
     try:
-        xmos.uid = partial(xm_os_uid, lua)
-        xmos.gid = partial(xm_os_gid, lua)
         xmos.getown = partial(xm_os_getown, lua)
     except NameError:
         pass

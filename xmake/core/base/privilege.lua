@@ -27,6 +27,7 @@ local privilege = privilege or {}
 
 -- load modules
 local os = require("base/os")
+local pyos = pyimport("os")
 
 -- store privilege
 function privilege.store()
@@ -60,12 +61,12 @@ function privilege.store()
     end
 
     -- set gid
-    if os.gid(owner.gid).errno ~= 0 then
+    if not pypcall(function() pyos.setresgid(owner.gid, owner.gid, owner.gid) end) then
         return false
     end
 
     -- set uid
-    if os.uid({ruid = owner.uid}).errno ~= 0 or os.uid({euid = owner.uid}).errno ~= 0 then
+    if not pypcall(function() pyos.setresuid(owner.uid, owner.uid, 0) end) then
         return false
     end
 
@@ -89,12 +90,12 @@ function privilege.get()
     end
 
     -- set uid
-    if os.uid({euid = 0}).errno ~= 0 or os.uid({ruid = 0}).errno ~= 0 then
+    if not pypcall(function() pyos.setresuid(0, 0, 0) end) then
         return false
     end
 
     -- set gid
-    if os.gid(0).errno ~= 0 then
+    if not pypcall(function() pyos.setresgid(0, 0, 0) end) then
         return false
     end
 
