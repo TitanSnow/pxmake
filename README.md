@@ -1,6 +1,11 @@
 # pxmake
 xmake implement on python focuses on reuse python's library and API compatibility
 
+<table><tr><td>linux</td><td>osx</td><td>windows</td></tr><tr><td><a href="https://travis-ci.org/TitanSnow/pxmake"><img alt="Build Status" src="https://travis-ci.org/TitanSnow/pxmake.svg?branch=dev"/></a></td><td><a href="https://travis-ci.org/TitanSnow/pxmake"><img alt="Build Status" src="https://travis-ci.org/TitanSnow/pxmake.svg?branch=build_on_mac"/></a></td><td><a href="https://ci.appveyor.com/project/TitanSnow/pxmake/branch/dev"><img alt="Build Status" src="https://ci.appveyor.com/api/projects/status/otk5ccqm048qqhex/branch/dev?svg=true"/></a></td></table>
+
+[![codecov](https://codecov.io/gh/TitanSnow/pxmake/branch/dev/graph/badge.svg)](https://codecov.io/gh/TitanSnow/pxmake)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4807330a0fcf4fc8b54a59a0455a8cc8)](https://www.codacy.com/app/TitanSnow/pxmake?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=TitanSnow/pxmake&amp;utm_campaign=Badge_Grade)
+
 ## Intro
 
 [xmake](https://github.com/tboox/xmake) is a make-like build utility based on Lua. Its low-level API (xmake machine) is implemented in C with library [tbox](https://github.com/tboox/tbox)
