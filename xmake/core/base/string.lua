@@ -25,6 +25,18 @@
 -- define module: string
 local string = string or {}
 
+-- startswith
+function string:startswith(prefix)
+    if #prefix > #self then return false end
+    if self:sub(1, #prefix) == prefix then return true end
+    return false
+end
+
+-- endswith
+function string:endswith(shufix)
+    return self:reverse():startswith(shufix:reverse())
+end
+
 -- find the last substring with the given pattern
 function string:find_last(pattern, plain)
 

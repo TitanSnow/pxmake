@@ -8,7 +8,6 @@ from xmbase import pathjoin
 import xmbuiltins
 import xmos
 import xmpath
-import xmstring
 import xmprocess
 import xmsandbox
 
@@ -35,7 +34,6 @@ def xm_machine_init():
     xmbuiltins.register(impl["lua"])
     xmos.register(impl["lua"])
     xmpath.register(impl["lua"])
-    xmstring.register(impl["lua"])
     xmprocess.register(impl["lua"])
     xmsandbox.register(impl["lua"])
     if platform in ("win32", "cygwin"):
