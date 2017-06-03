@@ -28,27 +28,22 @@ local path = path or {}
 -- load modules
 local utils     = require("base/utils")
 local string    = require("base/string")
+local pypath    = pyimport("os.path")
+local xmbase    = pyimport("xmbase")
+local pyos      = pyimport("os")
+
+path.expanduser = pypath.expanduser
+path.expandvars = pypath.expandvars
 
 -- get the directory of the path
 function path.directory(p)
-    local i = p:find_last("[/\\]")
-    if i then
-        if i > 1 then i = i - 1 end
-        return p:sub(1, i)
-    else
-        return "."
-    end
+    local dirname = pypath.dirname(p)
+    if dirname == '' then return '.' end
+    return dirname
 end
 
 -- get the filename of the path
-function path.filename(p)
-    local i = p:find_last("[/\\]")
-    if i then
-        return p:sub(i + 1)
-    else
-        return p
-    end
-end
+path.filename = pypath.basename
 
 -- get the basename of the path
 function path.basename(p)
@@ -77,36 +72,18 @@ function path.extension(p)
 end
 
 -- join path
-function path.join(p, ...)
-
-    -- check
-    assert(p)
-
-    -- join them
-    for _, name in ipairs({...}) do
-        p = p .. "/" .. name
-    end
-
-    -- translate path
-    return path.translate(p)
-end
+path.join = xmbase.pathjoin
 
 -- split path by the separator
 function path.split(p)
 
     -- split it
-    return p:split("/\\")
+    return path.translate(p):split(path.seperator())
 end
 
 -- get the path seperator
 function path.seperator()
-
-    -- windows?
-    if xmake._HOST == "windows" then
-        return '\\'
-    else
-        return '/'
-    end
+    return pyos.sep
 end
 
 -- return module: path
