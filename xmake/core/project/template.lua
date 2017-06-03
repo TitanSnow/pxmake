@@ -159,7 +159,7 @@ function template.templates(language)
     end
 
     -- sort templates
-    table.sort(templates)
+    table.sort(templates, function(a, b) return a.description < b.description end)
 
     -- ok?
     return templates
