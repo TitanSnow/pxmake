@@ -81,6 +81,11 @@ function sandbox_lib_detect_find_file.main(name, pathes)
             result = file
             break
         end
+
+        -- found?
+        if result then
+            break
+        end
     end
 
     -- ok?
