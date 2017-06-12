@@ -658,7 +658,6 @@ function os.addenv(name, ...)
     
     -- append values
     return os.setenv(name, table.concat({...}, seperator) .. seperator ..  (os.getenv(name) or ""))
-
 end
 
 -- get the program directory
