@@ -20,7 +20,10 @@ def xm_os_find(lua, rootdir, pattern, recurse, mode, excludes = None):
                     rootlen = len(rootdir)
                     assert(rootdir != ph)
                     assert(rootlen + 1 <= len(ph))
-                    phtk = ph[rootlen + 1:]
+                    if rootdir != ".":
+                        phtk = ph[rootlen + 1:]
+                    else:
+                        phtk = ph
                     excluded = False
                     for exclude in excludes:
                         if match(phtk, exclude) == phtk:
